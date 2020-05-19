@@ -17,9 +17,3 @@
 #endregion
 
 Set-StrictMode -Version Latest
-
-<#
- # Main
- #>
-
-Set-Alias aka Get-CommandAlias -Option AllScope -Scope 'Global' -Force

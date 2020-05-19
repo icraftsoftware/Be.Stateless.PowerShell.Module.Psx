@@ -16,6 +16,8 @@
 
 #endregion
 
+Import-Module -Name $PSScriptRoot\..\HashTable -Force
+
 Describe 'Bug related to HashTable that appeared with PowerShell 7.0' {
     It 'Throws an exception due a bug present in PowerShell 7.0 related to HashTable.' {
         # this will throw in PowerShell 7.0, see https://github.com/PowerShell/PowerShell/issues/11094

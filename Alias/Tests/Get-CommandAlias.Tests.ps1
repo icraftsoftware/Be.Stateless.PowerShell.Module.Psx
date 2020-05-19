@@ -16,7 +16,7 @@
 
 #endregion
 
-Import-Module Psx\Alias -Force
+Import-Module -Name $PSScriptRoot\..\Alias -Force
 
 Describe 'Get-CommandAlias' {
     InModuleScope Alias {
