@@ -48,3 +48,9 @@ function Get-CommandAlias {
         Get-Alias -Definition $_ -ErrorAction SilentlyContinue | Sort-Object
     }
 }
+
+<#
+ # Main
+ #>
+
+Set-Alias aka Get-CommandAlias -Option AllScope -Scope 'Global' -Force

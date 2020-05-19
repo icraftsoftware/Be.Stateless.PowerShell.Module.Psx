@@ -16,7 +16,7 @@
 
 #endregion
 
-Import-Module Psx\Pipeline -Force
+Import-Module -Name $PSScriptRoot\..\Pipeline -Force
 
 Describe 'Test-None' {
    InModuleScope Pipeline {

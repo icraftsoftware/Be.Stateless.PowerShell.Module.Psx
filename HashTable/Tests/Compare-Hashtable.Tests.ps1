@@ -16,7 +16,7 @@
 
 #endregion
 
-Import-Module Psx\HashTable -Force
+Import-Module -Name $PSScriptRoot\..\HashTable -Force
 
 Describe 'Compare-Hashtable' {
     InModuleScope HashTable {
