@@ -74,6 +74,9 @@ function Invoke-ScriptBlock {
         [psobject]
         $Parameters
     )
+    begin {
+        Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    }
     process {
         $expectedParameters = @( $ScriptBlock.Ast.ParamBlock | Select-Object -ExpandProperty Parameters | ForEach-Object -Process { $_.Name.VariablePath.UserPath } )
         $unexpectedParameters = @( $Parameters.Keys | Where-Object -FilterScript { $_ -notin $expectedParameters } )

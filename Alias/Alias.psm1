@@ -41,6 +41,7 @@ function Get-CommandAlias {
         $Name
     )
 
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     Get-Command -Name $Name | ForEach-Object -Process {
         if ($_.CommandType -eq 'Alias') { $_.Definition } else { $_.Name }
     } | ForEach-Object -Process {

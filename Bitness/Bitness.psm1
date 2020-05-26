@@ -36,6 +36,7 @@ function Assert-32bitProcess {
     [OutputType([void])]
     param()
 
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     if (-not(Test-32bitProcess)) {
         throw "A 32 bit process is required to run this function!"
     }
@@ -60,6 +61,7 @@ function Assert-64bitProcess {
     [OutputType([void])]
     param()
 
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     if (-not(Test-64bitProcess)) {
         throw "A 64 bit process is required to run this function!"
     }
@@ -81,6 +83,7 @@ function Test-32bitArchitecture {
     [OutputType([bool])]
     param()
 
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     # https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/cim-processor
     [bool](Get-CimInstance -ClassName CIM_Processor | Where-Object AddressWidth -eq 32)
 }
@@ -119,6 +122,7 @@ function Test-64bitArchitecture {
     [OutputType([bool])]
     param()
 
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     # https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/cim-processor
     [bool](Get-CimInstance -ClassName CIM_Processor | Where-Object AddressWidth -eq 64)
 }

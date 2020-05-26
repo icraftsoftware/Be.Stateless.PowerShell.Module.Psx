@@ -57,6 +57,7 @@ function Compare-HashTable {
         [string]
         $Prefix = ''
     )
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     $ReferenceHashTable.Keys + $DifferenceHashTable.Keys | Sort-Object -Unique -PipelineVariable key | ForEach-Object -Process {
         $propertyName = if ($Prefix) { "$Prefix.$key" } else { $key }
         if ($ReferenceHashTable.ContainsKey($key) -and !$DifferenceHashTable.ContainsKey($key)) {
@@ -102,6 +103,7 @@ function Merge-HashTable {
         $Force
     )
     begin {
+        Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
         $result = @{ }
     }
     process {

@@ -38,6 +38,7 @@ function Assert-Elevated {
     [OutputType([void])]
     param()
 
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     if (-not(Test-Elevated)) {
         throw "A process running in elevated mode is required to run this function!"
     }
@@ -59,6 +60,7 @@ function Test-Elevated {
     [OutputType([bool])]
     param()
 
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     # only if OS is later than XP (i.e. from Vista upward), i.e. if ([System.Environment]::OSVersion.Version.Major -gt 5)
     $wid = [System.Security.Principal.WindowsIdentity]::GetCurrent()
     [bool]( ([Security.Principal.WindowsPrincipal] $wid).IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator) )

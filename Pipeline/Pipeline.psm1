@@ -39,6 +39,7 @@ function Test-Any {
         $InputObject
     )
     begin {
+        Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
         $any = $false
     }
     process {
@@ -69,6 +70,7 @@ function Test-None {
         $InputObject
     )
     begin {
+        Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
         $none = $true
     }
     process {

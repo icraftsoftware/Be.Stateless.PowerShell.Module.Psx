@@ -51,6 +51,7 @@ function Use-Object {
         [scriptblock]
         $Process
     )
+    Resolve-ActionPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     try {
         . $Process
     } finally {

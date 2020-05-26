@@ -18,7 +18,7 @@
 
 @{
    RootModule            = 'Psx.psm1'
-   ModuleVersion         = '2.0.0.0'
+   ModuleVersion         = '2.1.0.0'
    GUID                  = '217de01f-f2e1-460a-99a4-b8895d0dd071'
    Author                = 'François Chabot'
    CompanyName           = 'be.stateless'
@@ -27,6 +27,7 @@
    ProcessorArchitecture = 'None'
    PowerShellVersion     = '5.0'
    NestedModules         = @(
+      'ActionPreference\ActionPreference.psm1',
       'Alias\Alias.psm1',
       'Bitness\Bitness.psm1',
       'HashTable\HashTable.psm1',
@@ -40,6 +41,8 @@
    AliasesToExport       = @('aka')
    CmdletsToExport       = @()
    FunctionsToExport     = @(
+      # ActionPreference.psm1
+      'Resolve-ActionPreference',
       # Alias.psm1
       'Get-CommandAlias',
       # Bitness.psm1
