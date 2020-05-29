@@ -54,7 +54,7 @@ param(
             $dp.Configuration.Attributes | Should -Not -BeNullOrEmpty
             $dp.Configuration.Attributes.Count | Should -BeExactly 1
             $dp.Configuration.Attributes[0] | Should -BeOfType [System.Management.Automation.ParameterAttribute]
-            $dp.Configuration.Attributes[0].Mandatory | Should -Be $false
+            $dp.Configuration.Attributes[0].Mandatory | Should -BeFalse
             $dp.Configuration.Attributes[0].HelpMessage | Should -BeExactly 'File Layout Configuration'
             $dp.Configuration.Value | Should -BeNullOrEmpty
         }

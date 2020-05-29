@@ -21,22 +21,22 @@ Import-Module -Name $PSScriptRoot\..\Pipeline -Force
 Describe 'Test-None' {
    InModuleScope Pipeline {
       It 'Returns true for empty array.' {
-         @() | Test-None | Should -Be $true
+         @() | Test-None | Should -BeTrue
       }
       It 'Returns true for nested empty array.' {
-         @( @() ) | Test-None | Should -Be $true
+         @( @() ) | Test-None | Should -BeTrue
       }
       It 'Returns false for array of arrays, even empty.' {
-         @( @() , @() ) | Test-None | Should -Be $false
+         @( @() , @() ) | Test-None | Should -BeFalse
       }
       It 'Returns false for $null.' {
-         $null | Test-None | Should -Be $false
+         $null | Test-None | Should -BeFalse
       }
       It 'Returns false for array with $null.' {
-         @( $null , @() ) | Test-None | Should -Be $false
+         @( $null , @() ) | Test-None | Should -BeFalse
       }
       It 'Works with arguments too.' {
-         Test-None -InputObject @( @() , @() ) | Should -Be $false
+         Test-None -InputObject @( @() , @() ) | Should -BeFalse
       }
    }
 }

@@ -21,22 +21,22 @@ Import-Module -Name $PSScriptRoot\..\Pipeline -Force
 Describe 'Test-Any' {
     InModuleScope Pipeline {
         It 'Returns false for empty array.' {
-            @() | Test-Any | Should -Be $false
+            @() | Test-Any | Should -BeFalse
         }
         It 'Returns false for nested empty array.' {
-            @( @() ) | Test-Any | Should -Be $false
+            @( @() ) | Test-Any | Should -BeFalse
         }
         It 'Returns true for array of arrays, even empty.' {
-            @( @() , @() ) | Test-Any | Should -Be $true
+            @( @() , @() ) | Test-Any | Should -BeTrue
         }
         It 'Returns true for $null.' {
-            $null | Test-Any | Should -Be $true
+            $null | Test-Any | Should -BeTrue
         }
         It 'Returns true for array with $null.' {
-            @( $null , @() ) | Test-Any | Should -Be $true
+            @( $null , @() ) | Test-Any | Should -BeTrue
         }
         It 'Works with arguments too.' {
-            Test-Any -InputObject @( @() , @() ) | Should -Be $true
+            Test-Any -InputObject @( @() , @() ) | Should -BeTrue
         }
     }
 }

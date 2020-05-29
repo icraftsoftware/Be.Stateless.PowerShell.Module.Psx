@@ -45,9 +45,9 @@ Describe 'Compare-Hashtable' {
 
                 $result.Length | Should -Be 1
                 $result.Key | Should -Be 'a'
-                $result.ReferenceValue | Should -Be $null
+                $result.ReferenceValue | Should -BeNullOrEmpty
                 $result.SideIndicator | Should -Be '<'
-                $result.DifferenceValue | Should -Be $null
+                $result.DifferenceValue | Should -BeNullOrEmpty
             }
         }
 
@@ -59,9 +59,9 @@ Describe 'Compare-Hashtable' {
 
                 $result.Length | Should -Be 1
                 $result.Key | Should -Be 'a'
-                $result.ReferenceValue | Should -Be $null
+                $result.ReferenceValue | Should -BeNullOrEmpty
                 $result.SideIndicator | Should -Be '>'
-                $result.DifferenceValue | Should -Be $null
+                $result.DifferenceValue | Should -BeNullOrEmpty
             }
         }
 
@@ -77,7 +77,7 @@ Describe 'Compare-Hashtable' {
                 $result = $results | Where-Object { $_.Key -eq 'a' }
                 $result.ReferenceValue | Should -Be 1
                 $result.SideIndicator | Should -Be '<'
-                $result.DifferenceValue | Should -Be $null
+                $result.DifferenceValue | Should -BeNullOrEmpty
             }
             It 'Returns ''c: 3 <> 4''.' {
                 $result = $results | Where-Object { $_.Key -eq 'c' }
@@ -87,7 +87,7 @@ Describe 'Compare-Hashtable' {
             }
             It 'Returns ''e: > 5.''' {
                 $result = $results | Where-Object { $_.Key -eq 'e' }
-                $result.ReferenceValue | Should -Be $null
+                $result.ReferenceValue | Should -BeNullOrEmpty
                 $result.SideIndicator | Should -Be '>'
                 $result.DifferenceValue | Should -Be 5
             }
@@ -95,11 +95,11 @@ Describe 'Compare-Hashtable' {
                 $result = $results | Where-Object { $_.Key -eq 'g' }
                 $result.ReferenceValue | Should -Be 6
                 $result.SideIndicator | Should -Be '<>'
-                $result.DifferenceValue | Should -Be $null
+                $result.DifferenceValue | Should -BeNullOrEmpty
             }
             It 'Returns ''k: <> 7''.' {
                 $result = $results | Where-Object { $_.Key -eq 'k' }
-                $result.ReferenceValue | Should -Be $null
+                $result.ReferenceValue | Should -BeNullOrEmpty
                 $result.SideIndicator | Should -Be '<>'
                 $result.DifferenceValue | Should -Be 7
             }
