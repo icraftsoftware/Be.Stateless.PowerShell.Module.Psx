@@ -28,7 +28,7 @@ Describe 'Merge-HashTable' {
                 $mergedHashTable = Merge-HashTable -HashTable $hashTables
 
                 $mergedHashTable | Should -BeOfType [hashtable]
-                $expectedResult = @{Alias = 'Iron Man'; DisplayName = 'Tony Stark'; FirstName = 'Tony'; LastName = 'Stark' }
+                $expectedResult = @{Alias = 'Iron Man' ; DisplayName = 'Tony Stark' ; FirstName = 'Tony' ; LastName = 'Stark' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
             It 'Does not overwrite merged properties by default.' {
@@ -37,7 +37,7 @@ Describe 'Merge-HashTable' {
                 $mergedHashTable = Merge-HashTable -HashTable $hashTables
 
                 $mergedHashTable | Should -BeOfType [hashtable]
-                $expectedResult = @{Alias = 'Iron Man'; FirstName = 'Tony' }
+                $expectedResult = @{Alias = 'Iron Man' ; FirstName = 'Tony' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable -Verbose | Should -BeNullOrEmpty
             }
         }
@@ -49,7 +49,7 @@ Describe 'Merge-HashTable' {
                 $mergedHashTable = $hashTables | Merge-HashTable
 
                 $mergedHashTable | Should -BeOfType [hashtable]
-                $expectedResult = @{Alias = 'Iron Man'; DisplayName = 'Tony Stark'; FirstName = 'Tony'; LastName = 'Stark' }
+                $expectedResult = @{Alias = 'Iron Man' ; DisplayName = 'Tony Stark' ; FirstName = 'Tony' ; LastName = 'Stark' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
             It 'Returns an empty HashTable if there are no HashTables to merge.' {
@@ -67,7 +67,7 @@ Describe 'Merge-HashTable' {
                 $mergedHashTable = $hashTables | Merge-HashTable
 
                 $mergedHashTable | Should -BeOfType [hashtable]
-                $expectedResult = @{Alias = 'Iron Man'; FirstName = 'Tony' }
+                $expectedResult = @{Alias = 'Iron Man' ; FirstName = 'Tony' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
             It 'Overwrites merged properties if forced to.' {
@@ -76,16 +76,16 @@ Describe 'Merge-HashTable' {
                 $mergedHashTable = $hashTables | Merge-HashTable -Force
 
                 $mergedHashTable | Should -BeOfType [hashtable]
-                $expectedResult = @{Alias = 'Spider Man'; FirstName = 'Peter' }
+                $expectedResult = @{Alias = 'Spider Man' ; FirstName = 'Peter' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
             It 'Overwrites merged properties if forced to unless properties are excluded.' {
-                $hashTables = @( @{Path = 'fn'; FirstName = 'Tony' }, @{Path = 'ln'; LastName = 'Stark' }, @{Path = 'dn'; DisplayName = 'Tony Stark' }, @{Path = 'an'; Alias = 'Iron Man' } )
+                $hashTables = @( @{Path = 'fn' ; FirstName = 'Tony' }, @{Path = 'ln' ; LastName = 'Stark' }, @{Path = 'dn' ; DisplayName = 'Tony Stark' }, @{Path = 'an' ; Alias = 'Iron Man' } )
 
                 $mergedHashTable = $hashTables | Merge-HashTable -Exclude 'Path' -Force
 
                 $mergedHashTable | Should -BeOfType [hashtable]
-                $expectedResult = @{Alias = 'Iron Man'; DisplayName = 'Tony Stark'; FirstName = 'Tony'; LastName = 'Stark' ; Path = 'fn' }
+                $expectedResult = @{Alias = 'Iron Man' ; DisplayName = 'Tony Stark' ; FirstName = 'Tony' ; LastName = 'Stark' ; Path = 'fn' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
             It 'Is verbose about every overwritten property.' {

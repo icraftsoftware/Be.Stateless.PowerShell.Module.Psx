@@ -31,11 +31,11 @@ Set-StrictMode -Version Latest
 .PARAMETER DifferenceHashTable
     The HashTable that is compared to the reference HashTable.
 .EXAMPLE
-    Compare-HashTable @{ a = 1; b = 2; c = 3 } @{ b = 2; c = 4; e = 5}
+    Compare-HashTable @{ a = 1 ; b = 2 ; c = 3 } @{ b = 2 ; c = 4 ; e = 5}
     Returns a difference for ("3 <="), c (3 "!=" 4) and e ("=>" 5).
 .EXAMPLE
-    $ReferenceHashTable = @{ a = 1; b = 2; c = 3; f = $Null; g = 6 }
-    $DifferenceHashTable = @{ b = 2; c = 4; e = 5; f = $Null; g = $Null }
+    $ReferenceHashTable = @{ a = 1 ; b = 2 ; c = 3 ; f = $null ; g = 6 }
+    $DifferenceHashTable = @{ b = 2 ; c = 4 ; e = 5 ; f = $null ; g = $null }
     Compare-HashTable $ReferenceHashTable $DifferenceHashTable
     Returns a difference for a ("3 <="), c (3 "!=" 4), e ("=>" 5) and g (6 "<=").
 .NOTES

@@ -66,8 +66,8 @@ Describe 'Compare-Hashtable' {
         }
 
         Context 'When both contain various stuff' {
-            $left = @{ a = 1; b = 2; c = 3; f = $null; g = 6; k = $null }
-            $right = @{ b = 2; c = 4; e = 5; f = $null; g = $null; k = 7 }
+            $left = @{ a = 1 ; b = 2 ; c = 3 ; f = $null ; g = 6 ; k = $null }
+            $right = @{ b = 2 ; c = 4 ; e = 5 ; f = $null ; g = $null ; k = 7 }
             $results = Compare-HashTable $left $right
 
             It 'Contains 5 differences.' {
