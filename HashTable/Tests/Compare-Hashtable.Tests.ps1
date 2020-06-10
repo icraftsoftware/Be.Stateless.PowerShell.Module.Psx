@@ -1,6 +1,6 @@
-﻿#region Copyright & License
+﻿#region Copydifference & License
 
-# Copyright © 2012 - 2020 François Chabot
+# Copydifference © 2012 - 2020 François Chabot
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,25 +22,23 @@ Describe 'Compare-Hashtable' {
     InModuleScope HashTable {
 
         Context 'When both are empty' {
-            $left, $right = @{ }, @{ }
-
             It 'Returns nothing.' {
-                Compare-HashTable $left $right | Should -BeNullOrEmpty
+                $left, $right = @{ }, @{ }
+                Compare-HashTable -ReferenceHashTable $left -DifferenceHashTable $right | Should -BeNullOrEmpty
             }
         }
 
         Context 'When both have one identical entry' {
-            $left, $right = @{ a = 'x' }, @{ a = 'x' }
-
             It 'Returns nothing.' {
+                $left, $right = @{ a = 'x' }, @{ a = 'x' }
                 Compare-HashTable $left $right | Should -BeNullOrEmpty
             }
         }
 
         Context 'When reference contains a key with a null value' {
-            $left, $right = @{ a = $null }, @{ }
-
             It 'Returns ''a: <''.' {
+                $left, $right = @{ a = $null }, @{ }
+
                 [object[]]$result = Compare-HashTable $left $right
 
                 $result.Length | Should -Be 1
@@ -52,9 +50,9 @@ Describe 'Compare-Hashtable' {
         }
 
         Context 'When difference contains a key with a null value' {
-            $left, $right = @{ }, @{ a = $null }
-
             It 'Returns ''a: >''.' {
+                $left, $right = @{ }, @{ a = $null }
+
                 [object[]]$result = Compare-HashTable $left $right
 
                 $result.Length | Should -Be 1
@@ -66,10 +64,11 @@ Describe 'Compare-Hashtable' {
         }
 
         Context 'When both contain various stuff' {
-            $left = @{ a = 1 ; b = 2 ; c = 3 ; f = $null ; g = 6 ; k = $null }
-            $right = @{ b = 2 ; c = 4 ; e = 5 ; f = $null ; g = $null ; k = 7 }
-            $results = Compare-HashTable $left $right
-
+            BeforeAll{
+                $left = @{ a = 1 ; b = 2 ; c = 3 ; f = $null ; g = 6 ; k = $null }
+                $right = @{ b = 2 ; c = 4 ; e = 5 ; f = $null ; g = $null ; k = 7 }
+                $results = Compare-HashTable $left $right
+            }
             It 'Contains 5 differences.' {
                 $results.Length | Should -Be 5
             }

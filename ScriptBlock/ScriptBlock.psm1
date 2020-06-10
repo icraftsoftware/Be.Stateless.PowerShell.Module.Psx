@@ -67,11 +67,13 @@ function Invoke-ScriptBlock {
     [OutputType([void])]
     param(
         [Parameter(Mandatory = $true)]
+        [ValidateNotNull()]
         [scriptblock]
         $ScriptBlock,
 
         [Parameter(Mandatory = $true)]
-        [psobject]
+        [ValidateNotNull()]
+        [hashtable]
         $Parameters
     )
     begin {

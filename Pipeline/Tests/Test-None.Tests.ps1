@@ -20,23 +20,72 @@ Import-Module -Name $PSScriptRoot\..\Pipeline -Force
 
 Describe 'Test-None' {
    InModuleScope Pipeline {
-      It 'Returns true for empty array.' {
-         @() | Test-None | Should -BeTrue
+
+      Context 'When InputObject is given by argument' {
+         It 'Returns true for empty array.' {
+            Test-None -InputObject @() | Should -BeTrue
+         }
+         It 'Returns true for nested empty array.' {
+            Test-None -InputObject @( @() ) | Should -BeTrue
+         }
+         It 'Returns true for array of empty arrays.' {
+            Test-None -InputObject @( @() , @() ) | Should -BeTrue
+         }
+         It 'Returns true for null.' {
+            Test-None -InputObject $null | Should -BeTrue
+         }
+         It 'Returns true for array with null.' {
+            Test-None -InputObject @( $null ) | Should -BeTrue
+         }
+         It 'Returns true for array with null and nested empty array.' {
+            Test-None -InputObject @( $null , @() ) | Should -BeTrue
+         }
+         It 'Returns false for one item.' {
+            Test-None -InputObject 1 | Should -BeFalse
+         }
+         It 'Returns false for array with one item.' {
+            Test-None -InputObject @( 1 ) | Should -BeFalse
+         }
+         It 'Returns false for array with one item and a nested empty array.' {
+            Test-None -InputObject @( 1, @() ) | Should -BeFalse
+         }
+         It 'Returns false for array with one non empty nested array.' {
+            Test-None -InputObject @( @( 1 ), @() ) | Should -BeFalse
+         }
       }
-      It 'Returns true for nested empty array.' {
-         @( @() ) | Test-None | Should -BeTrue
+
+      Context 'When InputObject is given by pipeline' {
+         It 'Returns true for empty array.' {
+            @() | Test-None | Should -BeTrue
+         }
+         It 'Returns true for nested empty array.' {
+            @( @() ) | Test-None | Should -BeTrue
+         }
+         It 'Returns true for array of empty arrays.' {
+            @( @() , @() ) | Test-None | Should -BeTrue
+         }
+         It 'Returns true for null.' {
+            $null | Test-None | Should -BeTrue
+         }
+         It 'Returns true for array with null.' {
+            @( $null ) | Test-None | Should -BeTrue
+         }
+         It 'Returns true for array with null and nested empty array.' {
+            @( $null , @() ) | Test-None | Should -BeTrue
+         }
+         It 'Returns false for one item.' {
+            1 | Test-None | Should -BeFalse
+         }
+         It 'Returns false for array with one item.' {
+            @( 1 ) | Test-None | Should -BeFalse
+         }
+         It 'Returns false for array with one item and a nested empty array.' {
+            @( 1, @() ) | Test-None | Should -BeFalse
+         }
+         It 'Returns false for array with one non empty nested array.' {
+            @( @( 1 ), @() ) | Test-None | Should -BeFalse
+         }
       }
-      It 'Returns false for array of arrays, even empty.' {
-         @( @() , @() ) | Test-None | Should -BeFalse
-      }
-      It 'Returns false for $null.' {
-         $null | Test-None | Should -BeFalse
-      }
-      It 'Returns false for array with $null.' {
-         @( $null , @() ) | Test-None | Should -BeFalse
-      }
-      It 'Works with arguments too.' {
-         Test-None -InputObject @( @() , @() ) | Should -BeFalse
-      }
+
    }
 }

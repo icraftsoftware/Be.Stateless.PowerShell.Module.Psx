@@ -19,6 +19,9 @@
 Import-Module -Name $PSScriptRoot\..\Alias -Force
 
 Describe 'Get-CommandAlias' {
+    BeforeAll {
+        $script:CommandNotFoundExceptionType = [Type]::GetType('System.Management.Automation.CommandNotFoundException, System.Management.Automation', $true)
+    }
     InModuleScope Alias {
         It 'Returns itself and aka alias.' {
             $expected = @(Get-Command -Name Get-CommandAlias) + @(Get-Alias -Definition Get-CommandAlias)
@@ -35,7 +38,7 @@ Describe 'Get-CommandAlias' {
             Compare-Object -ReferenceObject $expected -DifferenceObject $actual | Should -BeNullOrEmpty
         }
         It 'Throws for an unknown command or alias.' {
-            { Get-CommandAlias -Name Get-Unknown -ErrorAction Stop } | Should -Throw 'The term ''Get-Unknown'' is not recognized as the name of a cmdlet, function, script file, or operable program.'
+            { Get-CommandAlias -Name Get-Unknown -ErrorAction Stop } | Should -Throw -ExceptionType $CommandNotFoundExceptionType
         }
     }
 }

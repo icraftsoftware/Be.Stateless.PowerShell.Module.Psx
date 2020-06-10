@@ -43,7 +43,9 @@ function Test-Any {
         $any = $false
     }
     process {
-        $any = $true
+        if (-not $any) {
+            $InputObject | ForEach-Object -Process { $_ } | Where-Object -FilterScript { $null -ne $_ } | ForEach-Object -Process { $any = $true }
+        }
     }
     end {
         $any
@@ -74,7 +76,9 @@ function Test-None {
         $none = $true
     }
     process {
-        $none = $false
+        if ($none) {
+            $InputObject | ForEach-Object -Process { $_ } | Where-Object -FilterScript { $null -ne $_ } | ForEach-Object -Process { $none = $false }
+        }
     }
     end {
         $none
