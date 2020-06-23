@@ -17,6 +17,7 @@
 #endregion
 
 Import-Module -Name $PSScriptRoot\..\HashTable -Force
+Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
 
 Describe 'Bug related to HashTable that appeared with PowerShell 7.0' {
     It 'Throws an exception due a bug present in PowerShell 7.0 related to HashTable.' {

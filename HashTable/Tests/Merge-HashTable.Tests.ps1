@@ -17,6 +17,7 @@
 #endregion
 
 Import-Module -Name $PSScriptRoot\..\HashTable -Force
+Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
 
 Describe 'Merge-HashTable' {
     InModuleScope HashTable {

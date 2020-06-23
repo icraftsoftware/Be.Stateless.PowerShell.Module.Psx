@@ -17,6 +17,7 @@
 #endregion
 
 Import-Module -Name $PSScriptRoot\..\Alias -Force
+Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
 
 Describe 'Get-CommandAlias' {
     BeforeAll {

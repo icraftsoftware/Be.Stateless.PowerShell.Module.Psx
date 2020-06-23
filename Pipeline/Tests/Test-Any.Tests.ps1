@@ -17,6 +17,7 @@
 #endregion
 
 Import-Module -Name $PSScriptRoot\..\Pipeline -Force
+Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
 
 Describe 'Test-Any' {
     InModuleScope Pipeline {

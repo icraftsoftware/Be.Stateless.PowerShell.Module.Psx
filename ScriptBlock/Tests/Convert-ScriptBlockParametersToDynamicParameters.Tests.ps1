@@ -17,6 +17,7 @@
 #endregion
 
 Import-Module -Name $PSScriptRoot\..\ScriptBlock -Force
+Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
 
 Describe 'Convert-ScriptBlockParametersToDynamicParameters' {
     InModuleScope ScriptBlock {
