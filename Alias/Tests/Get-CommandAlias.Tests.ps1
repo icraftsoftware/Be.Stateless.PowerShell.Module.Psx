@@ -20,26 +20,33 @@ Import-Module -Name $PSScriptRoot\..\Alias -Force
 Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
 
 Describe 'Get-CommandAlias' {
-    BeforeAll {
-        $script:CommandNotFoundExceptionType = [Type]::GetType('System.Management.Automation.CommandNotFoundException, System.Management.Automation', $true)
-    }
     InModuleScope Alias {
-        It 'Returns itself and aka alias.' {
-            $expected = @(Get-Command -Name Get-CommandAlias) + @(Get-Alias -Definition Get-CommandAlias)
 
-            $actual = Get-CommandAlias -Name Get-CommandAlias
+        Context 'When commands and aliases exist' {
+            It 'Returns itself and aka alias.' {
+                $expected = @(Get-Command -Name Get-CommandAlias) + @(Get-Alias -Definition Get-CommandAlias)
 
-            Compare-Object -ReferenceObject $expected -DifferenceObject $actual | Should -BeNullOrEmpty
+                $actual = Get-CommandAlias -Name Get-CommandAlias
+
+                Compare-Object -ReferenceObject $expected -DifferenceObject $actual | Should -BeNullOrEmpty
+            }
+            It 'Returns itself and aka alias wen invoked via alias too.' {
+                $expected = @(Get-Command -Name Get-CommandAlias) + @(Get-Alias -Definition Get-CommandAlias)
+
+                $actual = aka -Name aka
+
+                Compare-Object -ReferenceObject $expected -DifferenceObject $actual | Should -BeNullOrEmpty
+            }
         }
-        It 'Returns itself and aka alias wen invoked via alias too.' {
-            $expected = @(Get-Command -Name Get-CommandAlias) + @(Get-Alias -Definition Get-CommandAlias)
 
-            $actual = aka -Name aka
+        Context 'When alias does not exist' {
+            BeforeAll {
+                $script:CommandNotFoundExceptionType = [Type]::GetType('System.Management.Automation.CommandNotFoundException, System.Management.Automation', $true)
+            }
+            It 'Throws for an unknown command or alias.' {
+                { Get-CommandAlias -Name Get-Unknown -ErrorAction Stop } | Should -Throw -ExceptionType $CommandNotFoundExceptionType
+            }
+        }
 
-            Compare-Object -ReferenceObject $expected -DifferenceObject $actual | Should -BeNullOrEmpty
-        }
-        It 'Throws for an unknown command or alias.' {
-            { Get-CommandAlias -Name Get-Unknown -ErrorAction Stop } | Should -Throw -ExceptionType $CommandNotFoundExceptionType
-        }
     }
 }
