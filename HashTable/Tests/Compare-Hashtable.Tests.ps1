@@ -1,4 +1,4 @@
-﻿#region Copydifference & License
+#region Copydifference & License
 
 # Copydifference © 2012 - 2020 François Chabot
 #

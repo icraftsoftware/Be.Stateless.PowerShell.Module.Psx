@@ -1,4 +1,4 @@
-﻿#region Copyright & License
+#region Copyright & License
 
 # Copyright © 2012 - 2020 François Chabot
 #
