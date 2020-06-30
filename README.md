@@ -14,3 +14,9 @@ Notice that to be able to install this PowerShell module right from the PowerShe
 Invoke-WebRequest -Uri https://github.com/icraftsoftware/Be.Stateless.Build.Scripts/raw/master/be.stateless.cer -OutFile "$($env:TEMP)\be.stateless.cer"
 Import-Certificate -FilePath "$($env:TEMP)\be.stateless.cer" -CertStoreLocation Cert:\LocalMachine\TrustedPeople\
 ```
+
+Notice that if the `ExecutionPolicy` is set to `AllSigned` you also need to run the following PowerShell command (it merely installs the certificate's public key in the 'Trusted Publishers' store underneath the 'Local Machine' certifcate store):
+
+```PowerShell
+Import-Certificate -FilePath "$($env:TEMP)\be.stateless.cer" -CertStoreLocation Cert:\LocalMachine\TrustedPublisher\
+```
