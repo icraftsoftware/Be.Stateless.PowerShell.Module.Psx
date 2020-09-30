@@ -26,44 +26,35 @@
    Description           = 'Useful PowerShell functions and commands.'
    ProcessorArchitecture = 'None'
    PowerShellVersion     = '5.0'
-   NestedModules         = @(
-      'ActionPreference\ActionPreference.psm1',
-      'Alias\Alias.psm1',
-      'Bitness\Bitness.psm1',
-      'HashTable\HashTable.psm1',
-      'Object\Object.psm1',
-      'Pipeline\Pipeline.psm1',
-      'ScriptBlock\ScriptBlock.psm1',
-      'Uac\Uac.psm1'
-   )
+   NestedModules         = @()
    RequiredModules       = @()
 
    AliasesToExport       = @('aka')
    CmdletsToExport       = @()
    FunctionsToExport     = @(
-      # ActionPreference.psm1
+      # ActionPreference.ps1
       'Resolve-ActionPreference',
-      # Alias.psm1
+      # Alias.ps1
       'Get-CommandAlias',
-      # Bitness.psm1
+      # Bitness.ps1
       'Assert-32bitProcess',
       'Assert-64bitProcess',
       'Test-32bitArchitecture',
       'Test-32bitProcess',
       'Test-64bitArchitecture',
       'Test-64bitProcess',
-      # HashTable.psm1
+      # HashTable.ps1
       'Compare-HashTable',
       'Merge-HashTable',
-      # Object.psm1
+      # Object.ps1
       'Use-Object',
-      # Pipeline.psm1
+      # Pipeline.ps1
       'Test-Any',
       'Test-None',
-      # ScriptBlock.psm1
+      # ScriptBlock.ps1
       'Convert-ScriptBlockParametersToDynamicParameters',
       'Invoke-ScriptBlock',
-      # Uac.psm1
+      # Uac.ps1
       'Assert-Elevated',
       'Test-Elevated'
    )

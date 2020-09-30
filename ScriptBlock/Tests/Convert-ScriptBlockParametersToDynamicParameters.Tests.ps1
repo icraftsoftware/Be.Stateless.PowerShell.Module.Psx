@@ -16,11 +16,10 @@
 
 #endregion
 
-Import-Module -Name $PSScriptRoot\..\ScriptBlock -Force
-Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
+Import-Module -Name $PSScriptRoot\..\..\Psx.psm1 -Force
 
 Describe 'Convert-ScriptBlockParametersToDynamicParameters' {
-    InModuleScope ScriptBlock {
+    InModuleScope Psx {
         It 'Converts simple parameters.' {
             $sb = [scriptblock]::Create(@'
 [CmdletBinding()]

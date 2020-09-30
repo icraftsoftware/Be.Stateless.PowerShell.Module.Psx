@@ -16,11 +16,10 @@
 
 #endregion
 
-Import-Module -Name $PSScriptRoot\..\Alias -Force
-Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
+Import-Module -Name $PSScriptRoot\..\..\Psx.psm1 -Force
 
 Describe 'Get-CommandAlias' {
-    InModuleScope Alias {
+    InModuleScope Psx {
 
         Context 'When commands and aliases exist' {
             It 'Returns itself and aka alias.' {

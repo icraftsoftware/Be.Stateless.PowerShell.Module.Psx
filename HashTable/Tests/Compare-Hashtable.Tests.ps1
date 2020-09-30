@@ -16,11 +16,10 @@
 
 #endregion
 
-Import-Module -Name $PSScriptRoot\..\HashTable -Force
-Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
+Import-Module -Name $PSScriptRoot\..\..\Psx.psm1 -Force
 
 Describe 'Compare-Hashtable' {
-    InModuleScope HashTable {
+    InModuleScope Psx {
 
         Context 'When both are empty' {
             It 'Returns nothing.' {
@@ -65,7 +64,7 @@ Describe 'Compare-Hashtable' {
         }
 
         Context 'When both contain various stuff' {
-            BeforeAll{
+            BeforeAll {
                 $left = @{ a = 1 ; b = 2 ; c = 3 ; f = $null ; g = 6 ; k = $null }
                 $right = @{ b = 2 ; c = 4 ; e = 5 ; f = $null ; g = $null ; k = 7 }
                 $results = Compare-HashTable $left $right

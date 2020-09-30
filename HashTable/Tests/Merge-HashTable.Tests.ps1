@@ -16,11 +16,10 @@
 
 #endregion
 
-Import-Module -Name $PSScriptRoot\..\HashTable -Force
-Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
+Import-Module -Name $PSScriptRoot\..\..\Psx.psm1 -Force
 
 Describe 'Merge-HashTable' {
-    InModuleScope HashTable {
+    InModuleScope Psx {
 
         Context 'When HashTables are given by arguments' {
             It 'Merges HashTables.' {

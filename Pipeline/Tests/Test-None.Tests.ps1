@@ -16,11 +16,10 @@
 
 #endregion
 
-Import-Module -Name $PSScriptRoot\..\Pipeline -Force
-Import-Module -Name $PSScriptRoot\..\..\ActionPreference -Force
+Import-Module -Name $PSScriptRoot\..\..\Psx.psm1 -Force
 
 Describe 'Test-None' {
-   InModuleScope Pipeline {
+   InModuleScope Psx {
 
       Context 'When InputObject is given by argument' {
          It 'Returns true for empty array.' {

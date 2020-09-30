@@ -17,3 +17,13 @@
 #endregion
 
 Set-StrictMode -Version Latest
+
+# dotsource nested scrips, see https://powershellexplained.com/2017-01-21-powershell-module-continious-delivery-pipeline/#psm1-module
+. $PSScriptRoot\ActionPreference\ActionPreference.ps1
+. $PSScriptRoot\Alias\Alias.ps1
+. $PSScriptRoot\Bitness\Bitness.ps1
+. $PSScriptRoot\HashTable\HashTable.ps1
+. $PSScriptRoot\Object\Object.ps1
+. $PSScriptRoot\Pipeline\Pipeline.ps1
+. $PSScriptRoot\ScriptBlock\ScriptBlock.ps1
+. $PSScriptRoot\Uac\Uac.ps1
