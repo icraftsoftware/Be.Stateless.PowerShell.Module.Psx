@@ -1,6 +1,6 @@
 #region Copyright & License
 
-# Copyright © 2020 François Chabot
+# Copyright © 2021 François Chabot
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 #endregion
 
-Import-Module -Name $PSScriptRoot\..\..\Psx.psm1 -Force
+Import-Module -Name $PSScriptRoot\..\..\Psx.psd1 -Force
 
 Describe 'Bug related to HashTable that appeared with PowerShell 7.0' {
     It 'Throws an exception due a bug present in PowerShell 7.0 related to HashTable.' {

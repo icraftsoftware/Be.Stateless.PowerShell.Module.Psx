@@ -42,7 +42,7 @@ function Assert-Elevated {
     if (-not(Test-Elevated)) {
         throw "A process running in elevated mode is required to run this function!"
     }
-    Write-Verbose "Process is running in elevated mode."
+    Write-Verbose -Message "Process is running in elevated mode."
 }
 
 <#

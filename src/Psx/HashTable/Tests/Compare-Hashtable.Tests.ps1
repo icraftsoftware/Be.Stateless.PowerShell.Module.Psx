@@ -1,6 +1,6 @@
-#region Copydifference & License
+#region Copyright & License
 
-# Copydifference © 2012 - 2020 François Chabot
+# Copyright © 2012 - 2021 François Chabot
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 #endregion
 
-Import-Module -Name $PSScriptRoot\..\..\Psx.psm1 -Force
+Import-Module -Name $PSScriptRoot\..\..\Psx.psd1 -Force
 
 Describe 'Compare-Hashtable' {
     InModuleScope Psx {

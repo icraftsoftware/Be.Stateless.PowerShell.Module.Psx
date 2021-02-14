@@ -1,6 +1,6 @@
 #region Copyright & License
 
-# Copyright © 2012 - 2020 François Chabot
+# Copyright © 2012 - 2021 François Chabot
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -50,10 +50,15 @@ Set-StrictMode -Version Latest
 .LINK
     about_Preference_Variables
 .LINK
-    see https://gallery.technet.microsoft.com/Inherit-Preference-82343b9d
-    see https://powershell.org/2014/01/getting-your-script-module-functions-to-inherit-preference-variables-from-the-caller/
+    https://gallery.technet.microsoft.com/Inherit-Preference-82343b9d
+.LINK
+    https://powershell.org/2014/01/getting-your-script-module-functions-to-inherit-preference-variables-from-the-caller/
+.LINK
+    https://www.powershellgallery.com/packages/Carbon/2.2.0/Content/Functions%5CUse-CallerPreference.ps1
+.LINK
+    https://github.com/PowerShell/PowerShell/issues/4568
 .NOTES
-    © 2020 be.stateless.
+    © 2021 be.stateless.
 #>
 function Resolve-ActionPreference {
     [CmdletBinding()]
@@ -68,17 +73,21 @@ function Resolve-ActionPreference {
         $SessionState,
 
         [Parameter(Mandatory = $false)]
-        [ValidateSet('Confirm', 'ErrorAction', 'InformationAction', 'Verbose', 'WarningAction', 'WhatIf')]
+        [ValidateSet('Confirm', 'Debug', 'ErrorAction', 'InformationAction', 'Verbose', 'WarningAction', 'WhatIf')]
         [string[]]
-        $Actions = @('Confirm', 'ErrorAction', 'InformationAction', 'Verbose', 'WarningAction', 'WhatIf')
+        $Actions = @('Confirm', 'Debug', 'ErrorAction', 'InformationAction', 'Verbose', 'WarningAction', 'WhatIf')
     )
     $Actions | ForEach-Object -Process {
+        # only propagate inherited action preferences for common action parameters that were not explicitly given by arguments
         if (-not $Cmdlet.MyInvocation.BoundParameters.ContainsKey($_)) {
             $actionPreference = $Cmdlet.SessionState.PSVariable.Get($preferenceVariables.$_)
-            if ($SessionState -eq $ExecutionContext.SessionState) {
-                Set-Variable -Scope 1 -Name $actionPreference.Name -Value $actionPreference.Value -Force -Confirm:$false -WhatIf:$false
-            } else {
-                $SessionState.PSVariable.Set($actionPreference.Name, $actionPreference.Value)
+            # only propagate inherited action preferences whose according preference variables have been given a value
+            if ($actionPreference) {
+                if ($SessionState -eq $ExecutionContext.SessionState) {
+                    Set-Variable -Scope 1 -Name $actionPreference.Name -Value $actionPreference.Value -Force -Confirm:$false -WhatIf:$false
+                } else {
+                    $SessionState.PSVariable.Set($actionPreference.Name, $actionPreference.Value)
+                }
             }
         }
     }
@@ -86,6 +95,7 @@ function Resolve-ActionPreference {
 
 $script:preferenceVariables = @{
     'Confirm'           = 'ConfirmPreference'
+    'Debug'             = 'DebugPreference'
     'ErrorAction'       = 'ErrorActionPreference'
     'InformationAction' = 'InformationPreference'
     'Verbose'           = 'VerbosePreference'

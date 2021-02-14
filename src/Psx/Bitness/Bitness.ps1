@@ -40,7 +40,7 @@ function Assert-32bitProcess {
     if (-not(Test-32bitProcess)) {
         throw "A 32 bit process is required to run this function!"
     }
-    Write-Verbose "Process is 32 bit."
+    Write-Verbose -Message "Process is 32 bit."
 }
 
 <#
@@ -65,7 +65,7 @@ function Assert-64bitProcess {
     if (-not(Test-64bitProcess)) {
         throw "A 64 bit process is required to run this function!"
     }
-    Write-Verbose "Process is 64 bit."
+    Write-Verbose -Message "Process is 64 bit."
 }
 
 <#
