@@ -1,4 +1,4 @@
-#region Copyright & License
+﻿#region Copyright & License
 
 # Copyright © 2012 - 2020 François Chabot
 #
@@ -35,7 +35,7 @@ function Test-Any {
     param(
         [Parameter(ValueFromPipeline = $true)]
         [AllowEmptyCollection()]
-        [psobject[]]
+        [PSObject[]]
         $InputObject
     )
     begin {
@@ -68,7 +68,7 @@ function Test-None {
     param(
         [Parameter(ValueFromPipeline = $true)]
         [AllowEmptyCollection()]
-        [psobject[]]
+        [PSObject[]]
         $InputObject
     )
     begin {
