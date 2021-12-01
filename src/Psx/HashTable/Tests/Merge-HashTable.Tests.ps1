@@ -27,7 +27,7 @@ Describe 'Merge-HashTable' {
 
                 $mergedHashTable = Merge-HashTable -HashTable $hashTables
 
-                $mergedHashTable | Should -BeOfType [hashtable]
+                $mergedHashTable | Should -BeOfType [HashTable]
                 $expectedResult = @{Alias = 'Iron Man' ; DisplayName = 'Tony Stark' ; FirstName = 'Tony' ; LastName = 'Stark' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
@@ -36,7 +36,7 @@ Describe 'Merge-HashTable' {
 
                 $mergedHashTable = Merge-HashTable -HashTable $hashTables
 
-                $mergedHashTable | Should -BeOfType [hashtable]
+                $mergedHashTable | Should -BeOfType [HashTable]
                 $expectedResult = @{Alias = 'Iron Man' ; FirstName = 'Tony' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable -Verbose | Should -BeNullOrEmpty
             }
@@ -48,7 +48,7 @@ Describe 'Merge-HashTable' {
 
                 $mergedHashTable = $hashTables | Merge-HashTable
 
-                $mergedHashTable | Should -BeOfType [hashtable]
+                $mergedHashTable | Should -BeOfType [HashTable]
                 $expectedResult = @{Alias = 'Iron Man' ; DisplayName = 'Tony Stark' ; FirstName = 'Tony' ; LastName = 'Stark' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
@@ -57,7 +57,7 @@ Describe 'Merge-HashTable' {
 
                 $mergedHashTable = $hashTables | Merge-HashTable
 
-                $mergedHashTable | Should -BeOfType [hashtable]
+                $mergedHashTable | Should -BeOfType [HashTable]
                 $expectedResult = @{ }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
@@ -66,7 +66,7 @@ Describe 'Merge-HashTable' {
 
                 $mergedHashTable = $hashTables | Merge-HashTable
 
-                $mergedHashTable | Should -BeOfType [hashtable]
+                $mergedHashTable | Should -BeOfType [HashTable]
                 $expectedResult = @{Alias = 'Iron Man' ; FirstName = 'Tony' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
@@ -75,7 +75,7 @@ Describe 'Merge-HashTable' {
 
                 $mergedHashTable = $hashTables | Merge-HashTable -Force
 
-                $mergedHashTable | Should -BeOfType [hashtable]
+                $mergedHashTable | Should -BeOfType [HashTable]
                 $expectedResult = @{Alias = 'Spider Man' ; FirstName = 'Peter' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }
@@ -84,7 +84,7 @@ Describe 'Merge-HashTable' {
 
                 $mergedHashTable = $hashTables | Merge-HashTable -Exclude 'Path' -Force
 
-                $mergedHashTable | Should -BeOfType [hashtable]
+                $mergedHashTable | Should -BeOfType [HashTable]
                 $expectedResult = @{Alias = 'Iron Man' ; DisplayName = 'Tony Stark' ; FirstName = 'Tony' ; LastName = 'Stark' ; Path = 'fn' }
                 Compare-HashTable -ReferenceHashTable $expectedResult -DifferenceHashTable $mergedHashTable | Should -BeNullOrEmpty
             }

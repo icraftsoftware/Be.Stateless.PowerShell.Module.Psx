@@ -73,7 +73,7 @@ function Invoke-ScriptBlock {
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNull()]
-        [hashtable]
+        [HashTable]
         $Parameters
     )
     begin {

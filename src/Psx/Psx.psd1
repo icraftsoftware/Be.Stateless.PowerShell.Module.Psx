@@ -22,7 +22,7 @@
    GUID                  = '217de01f-f2e1-460a-99a4-b8895d0dd071'
    Author                = 'François Chabot'
    CompanyName           = 'be.stateless'
-   Copyright             = '(c) 2012 - 2020 be.stateless. All rights reserved.'
+   Copyright             = '(c) 2012 - 2021 be.stateless. All rights reserved.'
    Description           = 'Useful PowerShell functions and commands.'
    ProcessorArchitecture = 'None'
    PowerShellVersion     = '5.0'
@@ -61,7 +61,7 @@
    VariablesToExport     = @()
    PrivateData           = @{
       PSData = @{
-         Tags       = @('Alias', 'Hashtable', 'Pipeline', 'PowerShell', 'Utilities', 'UAC')
+         Tags       = @('be.stateless.be', 'icraftsoftware', 'Alias', 'HashTable', 'Pipeline', 'PowerShell', 'Utilities', 'UAC')
          LicenseUri = 'https://github.com/icraftsoftware/Be.Stateless.PowerShell.Module.Psx/blob/master/LICENSE'
          ProjectUri = 'https://github.com/icraftsoftware/Be.Stateless.PowerShell.Module.Psx'
          # ReleaseNotes = ''
