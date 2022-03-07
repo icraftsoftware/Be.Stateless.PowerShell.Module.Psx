@@ -54,4 +54,4 @@ function Get-CommandAlias {
  # Main
  #>
 
-Set-Alias -Name aka -Value Get-CommandAlias -Option AllScope, ReadOnly -Force
+Set-Alias -Option ReadOnly -Name aka -Value Get-CommandAlias -Scope Global
