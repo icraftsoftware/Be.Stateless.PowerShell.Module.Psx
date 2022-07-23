@@ -51,6 +51,12 @@
       # Pipeline.ps1
       'Test-Any',
       'Test-None',
+      # Registry.ps1
+      'Clear-RegistryKey',
+      'Get-RegistryEntry',
+      'Remove-RegistryEntry',
+      'Set-RegistryEntry',
+      'Test-RegistryEntry',
       # ScriptBlock.ps1
       'Convert-ScriptBlockParametersToDynamicParameters',
       'Invoke-ScriptBlock',
@@ -61,7 +67,7 @@
    VariablesToExport     = @()
    PrivateData           = @{
       PSData = @{
-         Tags       = @('be.stateless.be', 'icraftsoftware', 'Alias', 'HashTable', 'Pipeline', 'PowerShell', 'Utilities', 'UAC')
+         Tags       = @('be.stateless', 'icraftsoftware', 'Alias', 'HashTable', 'Pipeline', 'PowerShell', 'Utilities', 'UAC')
          LicenseUri = 'https://github.com/icraftsoftware/Be.Stateless.PowerShell.Module.Psx/blob/master/LICENSE'
          ProjectUri = 'https://github.com/icraftsoftware/Be.Stateless.PowerShell.Module.Psx'
          Prerelease = 'preview'

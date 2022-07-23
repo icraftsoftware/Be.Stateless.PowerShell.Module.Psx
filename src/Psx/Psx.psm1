@@ -25,5 +25,6 @@ Set-StrictMode -Version Latest
 . $PSScriptRoot\HashTable\HashTable.ps1
 . $PSScriptRoot\Object\Object.ps1
 . $PSScriptRoot\Pipeline\Pipeline.ps1
+. $PSScriptRoot\Registry\Registry.ps1
 . $PSScriptRoot\ScriptBlock\ScriptBlock.ps1
 . $PSScriptRoot\Uac\Uac.ps1
