@@ -70,6 +70,7 @@
          Tags       = @('be.stateless', 'icraftsoftware', 'Alias', 'HashTable', 'Pipeline', 'PowerShell', 'Utilities', 'UAC')
          LicenseUri = 'https://github.com/icraftsoftware/Be.Stateless.PowerShell.Module.Psx/blob/master/LICENSE'
          ProjectUri = 'https://github.com/icraftsoftware/Be.Stateless.PowerShell.Module.Psx'
+         IconUri    = 'https://github.com/icraftsoftware/Be.Stateless.Build.Scripts/raw/master/nuget.png'
          Prerelease = 'preview'
       }
    }
