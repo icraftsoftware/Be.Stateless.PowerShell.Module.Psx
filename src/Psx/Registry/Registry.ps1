@@ -143,7 +143,7 @@ function Remove-RegistryEntry {
    The name of the entry.
 .PARAMETER Value
    The data to be stored.
-.PARAMETER Type
+.PARAMETER PropertyType
    The registry data type to use when storing the data.  The acceptable values for this parameter are:
    - Binary: Specifies binary data in any form. Used for REG_BINARY values.
    - DWord: Specifies a 32-bit binary number. Used for REG_DWORD values.
@@ -158,7 +158,7 @@ function Remove-RegistryEntry {
 .EXAMPLE
    PS> Set-RegistryEntry -Key HKLM:\SOFTWARE\BizTalk.Factory\BizTalk.Deployment\InstalledManifests -Entry $Manifest.Properties.Name -Value $Manifest.Properties.Path
 .EXAMPLE
-   PS> Set-RegistryEntry -Key HKLM:\SOFTWARE\Key -Entry name -Value 12 -Type DWord -Force
+   PS> Set-RegistryEntry -Key HKLM:\SOFTWARE\Key -Entry name -Value 12 -PropertyType DWord -Force
 .NOTES
    © 2022 be.stateless.
 #>
@@ -184,7 +184,7 @@ function Set-RegistryEntry {
       [Parameter(Position = 3, Mandatory = $false)]
       [ValidateNotNullOrEmpty()]
       [Microsoft.Win32.RegistryValueKind]
-      $Type,
+      $PropertyType,
 
       [Parameter(Mandatory = $false)]
       [switch]
@@ -197,7 +197,7 @@ function Set-RegistryEntry {
    if (Test-RegistryEntry -Key $Key -Entry $Entry) {
       Set-ItemProperty -Path $Key -Name $Entry -Value $Value
    } else {
-      New-ItemProperty -Path $Key -Name $Entry -Value $Value -PropertyType $Type | Out-Null
+      New-ItemProperty -Path $Key -Name $Entry -Value $Value -PropertyType $PropertyType | Out-Null
    }
 }
 
